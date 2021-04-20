@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"main/api/clock"
 	"main/api/greeter"
@@ -38,6 +39,7 @@ func main() {
 		clock:   clock,
 	}
 
+	fmt.Println("Listening *:5000")
 	handleRequests(clients)
 
 }

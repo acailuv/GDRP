@@ -1,0 +1,22 @@
+version: '2'
+services:
+  api:
+    build: ./backend
+    volumes:
+      - ./backend:/backend
+    ports: 
+      - 5000:5000 # API server
+    depends_on:
+      - postgres
+  postgres:
+    image: postgres:11.3
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: app-db
+  adminer:
+    image: adminer:latest
+    ports:
+      - 3645:8080
+    environment:
+      ADMINER_DEFAULT_SERVER: postgres
