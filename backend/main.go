@@ -18,10 +18,10 @@ type handlerClients struct {
 func handleRequests(clients handlerClients) {
 	router := mux.NewRouter().StrictSlash(true)
 
-	router.HandleFunc("/user/{id}", clients.user.Select)
-	router.HandleFunc("/users", clients.user.SelectAll)
-	router.HandleFunc("/upsert", clients.user.Upsert)
-	router.HandleFunc("/delete/{id}", clients.user.Delete)
+	router.HandleFunc("/users", clients.user.SelectAll).Methods(http.MethodGet)
+	router.HandleFunc("/user/{id}", clients.user.Select).Methods(http.MethodGet)
+	router.HandleFunc("/upsert", clients.user.Upsert).Methods(http.MethodPost)
+	router.HandleFunc("/user/{id}", clients.user.Delete).Methods(http.MethodDelete)
 
 	log.Fatal(http.ListenAndServe(":5000", router))
 }
