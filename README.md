@@ -9,6 +9,12 @@ A Template Stack. Use this if you want to spend less time doing infra stuff and 
 - Install [golang-migrate](https://github.com/golang-migrate/migrate).
     - You (might) need [Brew](https://brew.sh/).
 
+# Run
+First time running? Use `docker-compose up --build`.\
+If not, use `docker-compose up`.\
+
+**NOTE:** You need to rebuild if you made some changes to the Dockerfile(s). However, I'm pretty sure you know this if you are planning to make changes to those file(s).
+
 # Cheat Sheet
 This section contains some commands and examples that you might need. I have made a [Makefile](https://github.com/acailuv/GDRP/blob/main/Makefile) to make things easier. Check it out!
 
@@ -113,3 +119,19 @@ This is a database admin panel (similar to phpmyadmin). To access:
 This is a free API testing tools to test out your endpoints. To access:
 - Install [ReqBin Extension for Chrome](https://chrome.google.com/webstore/detail/reqbin-http-client/gmmkjpcadciiokjpikmkkmapphbmdjok).
 - Go to [ReqBin](https://reqbin.com/).
+
+# Errors
+In this section I will list out some errors that I encountered and provide solutions for that problem.
+## I/O Timeout when trying to `go get` in Docker
+The error will look like this
+```
+go: github.com/go-pg/pg/v10@v10.9.1: Get "https://proxy.golang.org/github.com/go-pg/pg/v10/@v/v10.9.1.mod": dial tcp: lookup proxy.golang.org on 172.17.254.1:53: read udp 172.17.0.2:45074->172.17.254.1:53: i/o timeout
+```
+To solve:
+- `nano /etc/resolv.conf`
+- Change all `nameserver` to 8.8.8.8 and 8.8.4.4
+- Your `resolv.conf` should looks like this (more or less)
+```
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
