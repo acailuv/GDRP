@@ -11,7 +11,7 @@ A Template Stack. Use this if you want to spend less time doing infra stuff and 
 
 # Run
 First time running? Use `docker-compose up --build`.\
-If not, use `docker-compose up`.\
+If not, use `docker-compose up`.
 
 **NOTE:** You need to rebuild if you made some changes to the Dockerfile(s). However, I'm pretty sure you know this if you are planning to make changes to those file(s).
 
