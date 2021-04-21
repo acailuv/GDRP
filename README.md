@@ -30,6 +30,12 @@ make run-migration-down database=${POSTGRESQL_URL}
 ```bash
 export POSTGRESQL_URL='postgres://root:root@localhost:5432/app-db?sslmode=disable'
 ```
+Not Working? Try these steps:
+- Open `~/.bashrc` using `nano` or your favorite text editor.
+- Scroll to the very bottom.
+- Copy the command above and paste it there.
+- Save and exit.
+- `source ~/.bashrc` or log out and log back in.
 
 ### Create Migration
 ```bash
