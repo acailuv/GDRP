@@ -29,10 +29,10 @@ export class Upsert extends React.Component {
     });
 
     this.setState({
-        id: "",
-        name: "",
-        secretKey: "",
-    })
+      id: "",
+      name: "",
+      secretKey: "",
+    });
   }
 
   isInputInvalid() {

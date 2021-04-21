@@ -1,22 +1,22 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
-import { Delete as DeleteRequest } from "../_Utils/ApiCaller"
+import { Delete as DeleteRequest } from "../_Utils/ApiCaller";
 import "../global.css";
 
 export class Delete extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        id: "",
-        result: null,
-      };
+      id: "",
+      result: null,
+    };
   }
 
   deleteButtonHandler(id) {
-    DeleteRequest('http://localhost:5000/user/' + id).then((data) => {
-        this.setState({
-          result: data,
-        });
+    DeleteRequest("http://localhost:5000/user/" + id).then((data) => {
+      this.setState({
+        result: data,
+      });
     });
   }
 
