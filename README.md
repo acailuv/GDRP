@@ -122,8 +122,9 @@ This is a free API testing tools to test out your endpoints. To access:
 
 # Errors
 In this section I will list out some errors that I encountered and provide solutions for that problem.
+
 ## I/O Timeout when trying to `go get` in Docker
-The error will look like this
+The error will look like this:
 ```
 go: github.com/go-pg/pg/v10@v10.9.1: Get "https://proxy.golang.org/github.com/go-pg/pg/v10/@v/v10.9.1.mod": dial tcp: lookup proxy.golang.org on 172.17.254.1:53: read udp 172.17.0.2:45074->172.17.254.1:53: i/o timeout
 ```
@@ -135,3 +136,13 @@ To solve:
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
+
+## CORS Problem when trying to call API
+When you call an endpoint from the frontend, this error will appear. The error will look something like this (browser console):
+```
+Access to fetch at 'http://localhost:5000/users' from origin 'http://localhost:3000' has been blocked by CORS policy: Request header field access-control-allow-origin is not allowed by Access-Control-Allow-Headers in preflight response.
+```
+To solve:
+- Install [Moesif](https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) in Google Chrome.
+- Turn the extension on
+- Refresh the React page.

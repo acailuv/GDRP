@@ -22,3 +22,12 @@ services:
       - 3645:8080
     environment:
       ADMINER_DEFAULT_SERVER: postgres
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api

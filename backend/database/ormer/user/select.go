@@ -1,6 +1,10 @@
 package ormer
 
-import "main/database/models"
+import (
+	"main/database/models"
+
+	"github.com/go-pg/pg/v10"
+)
 
 func (uo *userOrmer) Select(ID int64) (models.User, error) {
 
@@ -9,7 +13,7 @@ func (uo *userOrmer) Select(ID int64) (models.User, error) {
 	err := uo.db.Model(&user).
 		Where("id = ?", ID).
 		Select()
-	if err != nil {
+	if err != nil && err != pg.ErrNoRows {
 		return models.User{}, err
 	}
 

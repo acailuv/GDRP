@@ -1,0 +1,30 @@
+.App {
+    text-align: center;
+}
+
+.AppHeader {
+    background-color: #282c34;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    padding: 0 16px 16px 16px;
+}
+
+.AppContent {
+    margin: 32px;
+    font-size: calc(10px + 2vmin);
+    color: black;
+}
+
+.Link {
+    color: #61dafb;
+}
+
+.UserTable {
+    border: 2px solid black;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid gray;
+    text-align: center;
+}

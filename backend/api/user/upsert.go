@@ -8,6 +8,11 @@ import (
 
 func (u *user) Upsert(w http.ResponseWriter, r *http.Request) {
 
+	utils.SetupCORS(&w, r)
+	if r.Method == "OPTIONS" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
 	var user models.User
 	err := utils.ReadBody(r.Body, &user)
 	if err != nil {

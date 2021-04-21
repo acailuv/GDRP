@@ -6,8 +6,8 @@ COPY . /backend
 WORKDIR /backend
 RUN go get
 
-EXPOSE 8080 5432
+EXPOSE 8080
 
 # Hot Reload
-RUN ["go", "get", "github.com/githubnemo/CompileDaemon"]
+RUN [ "go", "get", "github.com/githubnemo/CompileDaemon" ]
 CMD CompileDaemon -log-prefix=false -build="go build" -command="./main"
