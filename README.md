@@ -10,10 +10,21 @@ A Template Stack. Use this if you want to spend less time doing infra stuff and 
     - You (might) need [Brew](https://brew.sh/).
 
 # Cheat Sheet
-This section contains some commands and examples that you might need.
+This section contains some commands and examples that you might need. I have made a [Makefile](https://github.com/acailuv/GDRP/blob/main/Makefile) to make things easier. Check it out!
 
 ## Useful Commands
 Below are some useful commands that you might need.
+
+### Using Makefile Macros
+```bash
+make generate-migration name=AddUserTable
+```
+```bash
+make run-migration-up database=${POSTGRESQL_URL}
+```
+```bash
+make run-migration-down database=${POSTGRESQL_URL}
+```
 
 ### Export POSTGRESQL_URL Environment Variable
 ```bash

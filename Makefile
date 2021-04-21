@@ -5,4 +5,4 @@ run-migration-up:
 	@migrate -database ${database} -path ./backend/database/migrations up
 
 run-migration-down:
-	migrate -database ${database} -path ./backend/database/migrations up
+	@migrate -database ${database} -path ./backend/database/migrations up
