@@ -3,43 +3,40 @@ package main
 import (
 	"fmt"
 	"log"
-	"main/api/clock"
-	"main/api/greeter"
 	"net/http"
+
+	api "main/api/user"
+	"main/database/connection"
 
 	"github.com/gorilla/mux"
 )
 
 type handlerClients struct {
-	greeter greeter.Greeter
-	clock   clock.Clock
+	user api.User
 }
 
 func handleRequests(clients handlerClients) {
-	myRouter := mux.NewRouter().StrictSlash(true)
+	router := mux.NewRouter().StrictSlash(true)
 
-	myRouter.HandleFunc("/greet", clients.greeter.Greet)
-	myRouter.HandleFunc("/clock", clients.clock.CurrentTime)
+	router.HandleFunc("/user/{id}", clients.user.Select)
+	router.HandleFunc("/users", clients.user.SelectAll)
+	router.HandleFunc("/upsert", clients.user.Upsert)
+	router.HandleFunc("/delete/{id}", clients.user.Delete)
 
-	log.Fatal(http.ListenAndServe(":5000", myRouter))
+	log.Fatal(http.ListenAndServe(":5000", router))
 }
 
 func main() {
 
-	greeterData := greeter.GreeterData{
-		Name:   "John Smith",
-		Gender: "Male",
-	}
-	greeterClient := greeter.NewGreeter(greeterData)
+	db := connection.NewConnection()
 
-	clock := clock.NewClock()
+	userClient := api.NewUserClient(db)
 
 	clients := handlerClients{
-		greeter: greeterClient,
-		clock:   clock,
+		user: userClient,
 	}
 
-	fmt.Println("Listening *:5000")
+	fmt.Println("Listening at *:5000")
 	handleRequests(clients)
 
 }

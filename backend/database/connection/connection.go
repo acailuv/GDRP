@@ -1,4 +1,4 @@
-package database
+package connection
 
 import (
 	"github.com/go-pg/pg/v10"

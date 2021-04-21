@@ -6,6 +6,7 @@ COPY . /backend
 WORKDIR /backend
 RUN go get
 
+EXPOSE 5432
 EXPOSE 8080
 EXPOSE 5000
 
