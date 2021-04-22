@@ -10,8 +10,10 @@ A Template Stack. Use this if you want to spend less time doing infra stuff and 
     - You (might) need [Brew](https://brew.sh/).
 
 # Run
-First time running? Use `docker-compose up --build`.\
+First time running? Use `npm install` and use `docker-compose up --build`.\
 If not, use `docker-compose up`.
+
+Or you can use `make start`. This will not make docker to rebuild if you made changes to the Dockerfile(s), though.
 
 **NOTE:** You need to rebuild if you made some changes to the Dockerfile(s). However, I'm pretty sure you know this if you are planning to make changes to those file(s).
 
@@ -33,7 +35,7 @@ go fmt *.go
 ```bash
 go fmt main         # 'main' is a package name
 ```
-If you are using VSCode and you have already installed the Go extension, This is not neede because the extension will prettify your code everytime you save.
+If you are using VSCode and you have already installed the Go extension, This is not needed because the extension will prettify your code everytime you save.
 
 ### Using Makefile Macros
 ```bash
