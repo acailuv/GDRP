@@ -21,6 +21,20 @@ This section contains some commands and examples that you might need. I have mad
 ## Useful Commands
 Below are some useful commands that you might need.
 
+### Prettify Codes
+In frontend you can use this command (make sure to `cd` to `./frontend` first):
+```bash
+npm run prettify
+```
+In back end you can use this command (make sure to `cd` to `./backend` first):
+```bash
+go fmt *.go
+```
+```bash
+go fmt main         # 'main' is a package name
+```
+If you are using VSCode and you have already installed the Go extension, This is not neede because the extension will prettify your code everytime you save.
+
 ### Using Makefile Macros
 ```bash
 make generate-migration name=AddUserTable
@@ -29,7 +43,7 @@ make generate-migration name=AddUserTable
 make run-migration-up database=${POSTGRESQL_URL}
 ```
 ```bash
-make run-migration-down database=${POSTGRESQL_URL}
+make run-migration-down database='postgres://root:root@localhost:5432/app-db?sslmode=disable'
 ```
 
 ### Export POSTGRESQL_URL Environment Variable
