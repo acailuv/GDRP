@@ -5,7 +5,7 @@ A Template Stack. Use this if you want to spend less time doing infra stuff and 
 - Backend API server (Golang).
 - Frontend server (ReactJS).
 - Database (PostgreSQL).
-- Public Domain (using [serverless.social](https://github.com/serverless-social)).
+- Tunneling (using [localtunnel.me](https://localtunnel.me/)).
 
 # Setting Up
 - Install [Go](https://golang.org/doc/install).
@@ -30,7 +30,7 @@ server-backend_1   | your url is: https://[API_SUBDOMAIN].loca.lt
 ```
 ```
 # This is your WEB server link (if subdomain is available). Open this in your browser.
-server-frontend_1  | your url is: https://hard-skunk-87.loca.lt
+server-frontend_1  | your url is: https://[WEB_SUBDOMAIN].loca.lt
 ```
 
 # Cheat Sheet
