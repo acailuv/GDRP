@@ -1,6 +1,6 @@
 import React from "react";
 import "../global.css";
-import { Get } from "../_Utils/ApiCaller";
+import { Get, GetAPILink } from "../_Utils/ApiConnector";
 import { UserRow } from "./UserRow";
 
 export class SelectAll extends React.Component {
@@ -12,9 +12,11 @@ export class SelectAll extends React.Component {
   }
 
   componentDidMount() {
-    Get("http://localhost:5000/users").then((data) => {
-      this.setState({
-        users: data,
+    GetAPILink().then((link) => {
+      Get(link + "/users").then((data) => {
+        this.setState({
+          users: data,
+        });
       });
     });
   }

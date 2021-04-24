@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
-import { Delete as DeleteRequest } from "../_Utils/ApiCaller";
+import { Delete as DeleteRequest, GetAPILink } from "../_Utils/ApiConnector";
 import "../global.css";
 
 export class Delete extends React.Component {
@@ -13,9 +13,11 @@ export class Delete extends React.Component {
   }
 
   deleteButtonHandler(id) {
-    DeleteRequest("http://localhost:5000/user/" + id).then((data) => {
-      this.setState({
-        result: data,
+    GetAPILink().then((link) => {
+      DeleteRequest(link + "/user/" + id).then((data) => {
+        this.setState({
+          result: data,
+        });
       });
     });
   }

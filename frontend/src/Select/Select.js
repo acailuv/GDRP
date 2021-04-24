@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
 import "../global.css";
-import { Get } from "../_Utils/ApiCaller";
+import { Get, GetAPILink } from "../_Utils/ApiConnector";
 import { UserInfo } from "./UserInfo";
 
 export class Select extends React.Component {
@@ -14,9 +14,11 @@ export class Select extends React.Component {
   }
 
   selectByIdButtonHandler(id) {
-    Get("http://localhost:5000/user/" + id).then((data) => {
-      this.setState({
-        user: data,
+    GetAPILink().then((link) => {
+      Get(link + "/user/" + id).then((data) => {
+        this.setState({
+          user: data,
+        });
       });
     });
   }

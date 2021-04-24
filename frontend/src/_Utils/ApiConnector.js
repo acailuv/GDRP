@@ -1,3 +1,5 @@
+import link from "./backend-link.txt";
+
 const HEADERS = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
@@ -10,12 +12,19 @@ const METHODS = {
   DELETE: "DELETE",
 };
 
+const MODE = "cors";
+
+const DEFAULT_OPTIONS = {
+  headers: HEADERS,
+  mode: MODE,
+};
+
 const STATUS_CODES = {
   ISE: 503,
   OK: 200,
 };
 
-const MODE = "cors";
+var apiLinkCache = "";
 
 function fetchAndResolve(link, opt) {
   return fetch(link, opt)
@@ -32,11 +41,32 @@ function fetchAndResolve(link, opt) {
     });
 }
 
+export async function GetAPILink() {
+  if (apiLinkCache !== "") {
+    return apiLinkCache;
+  }
+
+  const opt = {
+    ...DEFAULT_OPTIONS,
+    method: METHODS.GET,
+  };
+
+  const backendLink = await fetch(link, opt)
+    .then((response) => response.text())
+    .then((data) => {
+      return data.split(" ")[3].replace("\n", "");
+    })
+    .catch((err) => console.log(err));
+
+  apiLinkCache = backendLink;
+
+  return backendLink;
+}
+
 export function Get(link) {
   const opt = {
+    ...DEFAULT_OPTIONS,
     method: METHODS.GET,
-    headers: HEADERS,
-    mode: MODE,
   };
 
   return fetchAndResolve(link, opt);
@@ -44,9 +74,8 @@ export function Get(link) {
 
 export function Post(link, body) {
   const opt = {
+    ...DEFAULT_OPTIONS,
     method: METHODS.POST,
-    headers: HEADERS,
-    mode: MODE,
     body: JSON.stringify(body),
   };
 
@@ -55,9 +84,8 @@ export function Post(link, body) {
 
 export function Delete(link) {
   const opt = {
+    ...DEFAULT_OPTIONS,
     method: METHODS.DELETE,
-    headers: HEADERS,
-    mode: MODE,
   };
 
   return fetchAndResolve(link, opt);

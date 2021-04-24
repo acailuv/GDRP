@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, TextField } from "@material-ui/core";
 import "../global.css";
-import { Post } from "../_Utils/ApiCaller";
+import { Post, GetAPILink } from "../_Utils/ApiConnector";
 
 export class Upsert extends React.Component {
   constructor(props) {
@@ -22,9 +22,11 @@ export class Upsert extends React.Component {
       secret_key: this.state.secretKey,
     };
 
-    Post("http://localhost:5000/upsert", requestBody).then((data) => {
-      this.setState({
-        result: data,
+    GetAPILink().then((link) => {
+      Post(link + "/upsert", requestBody).then((data) => {
+        this.setState({
+          result: data,
+        });
       });
     });
 

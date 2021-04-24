@@ -1,11 +1,11 @@
-version: '2'
+version: '3.4'
 services:
   api:
     build: ./backend
     volumes:
       - ./backend:/backend
     ports: 
-      - 5000:5000 # API server
+      - 5000:5000
     depends_on:
       - postgres
   postgres:
@@ -25,9 +25,33 @@ services:
   frontend:
     build:
       context: ./frontend
+    environment:
+      ENV: production       # Choose one: development/production
     volumes:
       - ./frontend:/frontend
     ports:
-      - "3000:3000"
+      - 3000:3000
+    depends_on:
+      - server-backend
+  server-backend:
+    build: 
+      context: ./server-backend
+    # environment:
+    #   API_HOST: ''          # Change this to any host you like; remove to set host at http://localtunnel.me
+    #   API_SUBDOMAIN: ''     # Change this to any subdomain you like; Remove to generate a random subdomain.
+    volumes:
+      - ./server-backend:/server-backend
+      - ./frontend/src/_Utils:/server-backend/output
     depends_on:
       - api
+  server-frontend:
+    build: 
+      context: ./server-frontend
+    # environment:
+    #   WEB_HOST: ''          # Change this to any host you like; remove to set host at http://localtunnel.me
+    #   WEB_SUBDOMAIN: ''     # Change this to any subdomain you like; Remove to generate a random subdomain.
+    volumes:
+      - ./server-frontend:/server-frontend
+    depends_on:
+      - frontend
+      

@@ -1,6 +1,12 @@
 # GDRP: Go-Docker-React-Postgres
 A Template Stack. Use this if you want to spend less time doing infra stuff and more time to actually developing stuff.
 
+## What's in this template?
+- Backend API server (Golang).
+- Frontend server (ReactJS).
+- Database (PostgreSQL).
+- Public Domain (using [serverless.social](https://github.com/serverless-social)).
+
 # Setting Up
 - Install [Go](https://golang.org/doc/install).
 - Install [NodeJS](https://nodejs.org/en/download/).
@@ -10,12 +16,22 @@ A Template Stack. Use this if you want to spend less time doing infra stuff and 
     - You (might) need [Brew](https://brew.sh/).
 
 # Run
-First time running? Use `npm install` and use `docker-compose up --build`.\
+First time running? Use `npm install` (in `./frontend` folder) and use `docker-compose up --build`.\
 If not, use `docker-compose up`.
 
 Or you can use `make start`. This will not make docker to rebuild if you made changes to the Dockerfile(s), though.
 
 **NOTE:** You need to rebuild if you made some changes to the Dockerfile(s). However, I'm pretty sure you know this if you are planning to make changes to those file(s).
+
+After the servers are up and running, you can access your web directly in your browser. Look for the url in your terminal.
+```
+# This is your API server link (if subdomain is available)
+server-backend_1   | your url is: https://[API_SUBDOMAIN].loca.lt
+```
+```
+# This is your WEB server link (if subdomain is available). Open this in your browser.
+server-frontend_1  | your url is: https://hard-skunk-87.loca.lt
+```
 
 # Cheat Sheet
 This section contains some commands and examples that you might need. I have made a [Makefile](https://github.com/acailuv/GDRP/blob/main/Makefile) to make things easier. Check it out!
